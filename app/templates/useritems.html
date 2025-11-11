@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Food Items</title>
+</head>
+<body>
+  <h1>Available Food Items</h1>
+  <div>
+    {% for item in items %}
+      <div style="border:1px solid #ccc; padding:10px; margin:10px;">
+        <img src="{{ item.image.url }}" width="150" height="100"><br>
+        <strong>{{ item.name }}</strong><br>
+        Price: ${{ item.price }}<br>
+      </div>
+    {% empty %}
+      <p>No food items available.</p>
+    {% endfor %}
+  </div>
+  <p><a href="{% url 'order_now' %}">Order Now</a></p>
+</body>
+</html>

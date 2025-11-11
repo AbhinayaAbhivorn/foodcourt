@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin - Orders List</title>
+</head>
+<body>
+  <h1>All User Orders</h1>
+  <table border="1" cellpadding="8">
+    <tr>
+      <th>Customer</th>
+      <th>Food Item</th>
+      <th>Quantity</th>
+      <th>Total Price</th>
+      <th>Date</th>
+    </tr>
+    {% for order in orders %}
+    <tr>
+      <td>{{ order.customer_name }}</td>
+      <td>{{ order.food_item.name }}</td>
+      <td>{{ order.quantity }}</td>
+      <td>${{ order.total_price }}</td>
+      <td>{{ order.created_at }}</td>
+    </tr>
+    {% empty %}
+      <tr><td colspan="5">No orders yet.</td></tr>
+    {% endfor %}
+  </table>
+  <p><a href="{% url 'home' %}">Back to Home</a></p>
+</body>
+</html>

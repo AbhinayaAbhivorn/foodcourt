@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Order Food</title>
+</head>
+<body>
+  <h1>Order Food</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Place Order</button>
+  </form>
+  <p><a href="{% url 'user_items' %}">Back to Items</a></p>
+</body>
+</html>

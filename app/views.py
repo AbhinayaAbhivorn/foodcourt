@@ -4,12 +4,18 @@ from .forms import OrderForm
 
 # Home page for users
 def home(request):
-    return render(request, 'foodcourt/home.html')
+    items = FoodItem.objects.all()
+    return render(request, 'useritems.html', {'items': items})
+    
 
 # Display all available food items
 def user_items(request):
     items = FoodItem.objects.all()
-    return render(request, 'foodcourt/user_items.html', {'items': items})
+    return render(request, 'useritems.html', {'items': items})
+def order_list(request):
+    orders=Order.objects.all()
+    return render(request, 'orderlist.html', {'orders':orders})
+
 
 # Order Now page
 def order_now(request):
@@ -20,9 +26,5 @@ def order_now(request):
             return redirect('user_items')
     else:
         form = OrderForm()
-    return render(request, 'foodcourt/order.html', {'form': form})
+    return render(request, 'ordernow.html', {'form': form})
 
-# Admin order list page
-def admin_orders(request):
-    orders = Order.objects.all().order_by('-created_at')
-    return render(request, 'foodcourt/admin_orders.html', {'orders': orders})
